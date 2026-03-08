@@ -13,7 +13,7 @@ const Nav = () => {
 
   return (
     <div className="sticky top-0 z-[100] w-full h-[80px] flex items-center px-4 sm:px-8 bg-transparent backdrop-blur-lg">
-      <img className='h-[60px] md:h-full object-contain' src="/logo.jpeg" alt="logo" />
+      <img className='h-[60px] md:h-full object-contain' src="/logo1.png" alt="logo" />
       
       {/* Desktop Menu */}
       <div className="hidden md:block ml-auto">

@@ -3,6 +3,9 @@ import Background from './Component/Background'
 import Nav from './Component/Nav'
 import UpperText from './Component/UpperText'
 import Service from './Component/Service';
+import About from './Component/About';
+import Blog from './Component/Blog';
+import Contact from './Component/Contact';
 
 const App = () => {
   return (
@@ -18,6 +21,13 @@ const App = () => {
       {/* Services Section */}
       <Service />
 
+      {/* About Section */}
+      <About />
+
+      {/* Blog Section */}
+      <Blog />
+{ /* Contact Section */}
+<Contact />
       <Background />
     </div>
   );

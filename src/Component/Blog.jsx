@@ -1,16 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from "react";
 
 const TYPING_TEXTS = [
-  "Website Development: WeblyDoor creates modern, responsive, and user-friendly websites tailored to meet the unique needs of each business.",
-  "UI/UX Design: We design visually appealing and intuitive interfaces that enhance user experience and keep visitors engaged.",
-  "Search Engine Optimization (SEO): Our SEO strategies help businesses improve their search engine rankings and increase organic traffic.",
-  "E-commerce Solutions: We build secure and scalable online stores that make it easy for businesses to sell products and services online.",
-  "Digital Marketing Services: WeblyDoor helps businesses grow their brand through effective digital marketing strategies and targeted campaigns.",
-  "Website Maintenance and Support: We provide continuous support, updates, and maintenance to ensure websites run smoothly and securely.",
-  "Performance Optimization: Our team optimizes website speed and performance to deliver a seamless browsing experience.",
-  "Brand Identity Development: We help businesses create strong digital identities through logo design, branding, and consistent visual communication.",
-  "Mobile-Responsive Development: All our websites are optimized to work perfectly on mobile phones, tablets, and desktops.",
-  "Client-Focused Solutions: WeblyDoor focuses on understanding client goals and delivering digital solutions that drive real business growth."
+  "💡 Expert Insights: We share deep knowledge on digital marketing strategies.",
+  "🚀 Trend Analysis: Stay ahead of the curve with the latest industry shifts.",
+  "📈 Actionable Tips: Learn practical ways to boost your online presence.",
+  "🔍 SEO Strategies: Discover proven methods to climb search engine rankings.",
+  "💻 Tech Updates: Keep up with modern development practices and standards."
 ];
 
 function useSimpleTyping(texts, typingSpeed = 50, deletingSpeed = 30, pause = 1500) {
@@ -95,58 +90,37 @@ const CircuitRight = () => (
   </svg>
 );
 
-const services = [
+const blogItems = [
   {
-    title: 'Website Development',
-    description: 'We create modern, responsive, and user-friendly websites that represent your brand and help convert visitors into customers. Our websites are built to perform smoothly across all devices.',
+    title: 'What You Will Learn',
+    description: 'Our blog covers topics such as digital marketing strategies, website development tips, SEO insights, branding ideas, and industry updates.',
     icon: (
       <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
     ),
   },
   {
-    title: 'Search Engine Optimization',
-    description: 'Our SEO services help your website rank higher in search engines. We use effective strategies to improve visibility, increase organic traffic, and bring more potential customers to your business.',
+    title: 'Stay Updated',
+    description: 'The digital world is constantly evolving. Through our blog, we aim to keep you informed about the latest trends and best practices that can help your business grow online.',
     icon: (
       <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 13a3 3 0 100-6 3 3 0 000 6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
       </svg>
     ),
   },
   {
-    title: 'Digital Marketing',
-    description: 'Our digital marketing solutions help businesses promote their products and services online. We focus on strategies that increase brand awareness and generate real results.',
+    title: 'Learn and Grow',
+    description: 'Whether you are a business owner or someone interested in digital marketing, our blog provides useful information to help you understand and succeed in the digital space.',
     icon: (
       <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Branding & Design',
-    description: 'A strong brand identity helps businesses stand out. We design professional logos, graphics, and brand visuals that create a lasting impression on your audience.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Website Maintenance',
-    description: 'Keeping a website updated and secure is important. Our maintenance services ensure your website runs smoothly, stays updated, and performs at its best.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
   }
 ];
 
-const ServiceCard = ({ service, index }) => {
+const BlogCard = ({ item, index }) => {
   const cardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -268,7 +242,7 @@ const ServiceCard = ({ service, index }) => {
               transform: isHovered ? 'scale(1.2) translateZ(5px)' : 'scale(1)',
               transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
             }}>
-              {service.icon}
+              {item.icon}
             </div>
           </div>
 
@@ -278,14 +252,14 @@ const ServiceCard = ({ service, index }) => {
               className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Astro'] tracking-wider leading-tight"
               style={{ textShadow: isHovered ? '0 0 20px rgba(196,242,13,0.5)' : 'none', transition: 'text-shadow 0.4s' }}
             >
-              {service.title}
+              {item.title}
             </h3>
           </div>
 
           {/* Description */}
           <div style={{ transform: 'translateZ(20px)' }}>
             <p className="text-[0.95rem] text-gray-300/90 leading-relaxed font-sans mt-2">
-              {service.description}
+              {item.description}
             </p>
           </div>
 
@@ -312,7 +286,7 @@ const ServiceCard = ({ service, index }) => {
   );
 };
 
-const Service = () => {
+const Blog = () => {
   const displayedText = useSimpleTyping(TYPING_TEXTS);
   const [headerRef, headerInView] = useInView(0.1);
 
@@ -360,25 +334,22 @@ const Service = () => {
         .glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
 
         /* ── Sticky layout ── */
-        /* The outer wrapper must NOT be overflow:hidden or it will kill sticky */
-        #services-inner {
+        #blog-inner {
           display: grid;
           grid-template-columns: 1fr; /* mobile: single column */
           align-items: start;
         }
         @media (min-width: 1024px) {
-          #services-inner {
+          #blog-inner {
             grid-template-columns: 5fr 7fr;
             gap: 2rem;
           }
         }
 
         /* Left sticky panel */
-        #services-sticky-left {
+        #blog-sticky-left {
           position: sticky;
-          /* 32px gap from top of viewport while scrolling */
           top: 90px;
-          /* Must NOT set max-height that cuts it short — let it be as tall as its content */
           align-self: start;
           z-index: 20;
         }
@@ -386,7 +357,7 @@ const Service = () => {
 
       <section
         className="relative w-full bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 overflow-visible"
-        id="services"
+        id="blog"
       >
         {/* Floating particles */}
         {particles.map(p => (
@@ -410,12 +381,12 @@ const Service = () => {
           style={{ background: 'radial-gradient(circle, rgba(196,242,13,0.04) 0%, transparent 70%)', filter: 'blur(40px)' }}
         />
 
-        {/* Main layout wrapper — NO overflow:hidden, use overflow:visible */}
-        <div id="services-inner" className="max-w-7xl mx-auto w-full relative z-10">
+        {/* Main layout wrapper */}
+        <div id="blog-inner" className="max-w-7xl mx-auto w-full relative z-10">
 
           {/* ═══ STICKY LEFT PANEL ═══ */}
           <div
-            id="services-sticky-left"
+            id="blog-sticky-left"
             ref={headerRef}
             className="text-left flex flex-col items-start px-4 py-6 lg:p-2 lg:bg-transparent lg:backdrop-blur-none lg:rounded-none lg:border-none lg:shadow-none"
             style={{
@@ -440,20 +411,25 @@ const Service = () => {
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C4F20D]/20 to-transparent"
                   style={{ animation: 'shimmer 2.5s linear infinite', backgroundSize: '200% 100%' }}
                 />
-                Our Digital Services
+                Read & Discover
               </span>
             </div>
 
             {/* Title */}
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Astro'] mb-6 tracking-wider">
-              Weblydoor
+              Weblydoor Blog
             </h2>
+
+            {/* Introductory paragraph */}
+            <p className="max-w-3xl lg:max-w-none text-base sm:text-lg lg:text-xl text-gray-300 font-sans leading-relaxed border-l-4 border-[#C4F20D]/30 pl-6 text-left mb-6">
+              Welcome to the Weblydoor Blog, where we share valuable insights, tips, and updates about the digital world. Our blog is designed to help businesses understand digital trends and make better online decisions.
+            </p>
 
             {/* Typing text block */}
             <div className="w-full mt-2 relative">
               {/* Glowing dot on left border */}
               <span className="absolute -left-[3px] top-0 w-2 h-2 rounded-full bg-[#C4F20D] glow-pulse" />
-              <p className="max-w-3xl lg:max-w-none text-base sm:text-lg lg:text-xl text-gray-400 font-sans leading-relaxed border-l-4 border-[#C4F20D]/30 pl-6 min-h-[140px] flex items-start text-left">
+              <p className="max-w-3xl lg:max-w-none text-sm sm:text-base lg:text-lg text-gray-400 font-sans leading-relaxed border-l-4 border-[#C4F20D]/30 pl-6 min-h-[80px] flex items-start text-left italic">
                 <span>
                   {displayedText}
                   <span
@@ -467,15 +443,14 @@ const Service = () => {
 
           {/* ═══ CARDS GRID ═══ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-12 lg:mt-0">
-            {services.map((service, index) => (
+            {blogItems.map((item, index) => (
               <div
                 key={index}
                 className={
-                  index === 3 ? "lg:col-span-1 lg:col-start-1" :
-                  index === 4 ? "sm:col-span-2" : ""
+                  index === 2 ? "sm:col-span-2" : ""
                 }
               >
-                <ServiceCard service={service} index={index} />
+                <BlogCard item={item} index={index} />
               </div>
             ))}
           </div>
@@ -486,4 +461,4 @@ const Service = () => {
   );
 };
 
-export default Service;
+export default Blog;
