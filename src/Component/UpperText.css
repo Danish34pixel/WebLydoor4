@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'FrenklinsDisplay';
+  src: url('/Frenklins Font/FrenklinsDisplayTrial-lgmmZ.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.uppertext {
+  font-family: 'FrenklinsDisplay', Poppins, system-ui, -apple-system, sans-serif;
+}
