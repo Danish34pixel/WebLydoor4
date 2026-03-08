@@ -81,10 +81,11 @@ const styles = {
     color: '#C4F20D',
     fontFamily: "'Syne', sans-serif",
     fontWeight: 800,
-    fontSize: 'clamp(1.2rem, 4.5vw, 3.5rem)',
+    fontSize: 'clamp(1.25rem, 6.5vw, 3.5rem)',
     lineHeight: 1.15,
     letterSpacing: '-0.01em',
-    whiteSpace: 'nowrap',
+    whiteSpace: 'normal',
+    wordBreak: 'break-word',
     textShadow: '0 0 40px rgba(196,242,13,0.4)',
   },
   cursor: {
