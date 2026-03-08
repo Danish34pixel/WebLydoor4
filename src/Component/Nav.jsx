@@ -12,7 +12,7 @@ const Nav = () => {
   ];
 
   return (
-    <div className="sticky top-0 z-[100] w-full h-[80px] flex items-center px-4 sm:px-8 bg-black/40 backdrop-blur-lg">
+    <div className="sticky top-0 z-[100] w-full h-[80px] flex items-center px-4 sm:px-8 bg-transparent backdrop-blur-lg">
       <img className='h-[60px] md:h-full object-contain' src="/logo.jpeg" alt="logo" />
       
       {/* Desktop Menu */}
@@ -46,7 +46,7 @@ const Nav = () => {
 
       {/* Mobile Menu Dropdown */}
       <div 
-        className={`fixed top-[80px] left-0 w-full h-[calc(100vh-80px)] bg-black/95 backdrop-blur-xl border-t border-[#C4F20D]/20 md:hidden overflow-hidden transition-all duration-300 ease-in-out origin-top z-[60] ${
+        className={`fixed top-[80px] left-0 w-full h-[calc(100vh-80px)] bg-transparent backdrop-blur-xl border-t border-[#C4F20D]/20 md:hidden overflow-hidden transition-all duration-300 ease-in-out origin-top z-[60] ${
           isMobileMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'
         }`}
       >
