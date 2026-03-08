@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import './UpperText.css';
 
 // ─── Inline styles (replaces UpperText.css + Tailwind) ───────────────────────
 const styles = {
@@ -12,7 +13,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: "'Syne', sans-serif",
+    fontFamily: "'Astro', sans-serif",
     overflow: 'hidden',
     padding: '0 16px',
     paddingBottom: '22vh', /* Shifting the visual center upward */
@@ -79,8 +80,8 @@ const styles = {
   typeline: {
     display: 'inline-block',
     color: '#C4F20D',
-    fontFamily: "'Syne', sans-serif",
-    fontWeight: 800,
+    fontFamily: "'Astro', sans-serif",
+    fontWeight: 'normal',
     fontSize: 'clamp(1.25rem, 6.5vw, 3.5rem)',
     lineHeight: 1.15,
     letterSpacing: '-0.01em',
@@ -135,8 +136,8 @@ const styles = {
   bodyText: {
     gridArea: '1 / 1',
     color: '#C4F20D',
-    fontFamily: "'DM Sans', sans-serif",
-    fontWeight: 400,
+    fontFamily: "'Astro', sans-serif",
+    fontWeight: 'normal',
     fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)',
     lineHeight: 1.75,
     letterSpacing: '0.01em',
@@ -232,10 +233,7 @@ const UpperText = ({ onIndexChange: externalCb } = {}) => {
 
   return (
     <>
-      {/* Google Fonts */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
-
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes pulse {
           0%,100% { box-shadow: 0 0 0 0 rgba(196,242,13,0.5); }
