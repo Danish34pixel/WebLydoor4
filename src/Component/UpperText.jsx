@@ -15,6 +15,7 @@ const styles = {
     fontFamily: "'Syne', sans-serif",
     overflow: 'hidden',
     padding: '0 16px',
+    paddingBottom: '22vh', /* Shifting the visual center upward */
   },
   // Subtle grid overlay
   gridOverlay: {
