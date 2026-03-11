@@ -156,12 +156,10 @@ const services = [
 const ServiceCard = ({ service, index }) => {
   const navigate = useNavigate();
   const cardRef = useRef(null);
-  const innerCardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [inViewRef, inView] = useInView(0.1);
-  const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -194,37 +192,32 @@ const ServiceCard = ({ service, index }) => {
     const targetRoute = routeMap[service.title];
     if (!targetRoute) return;
 
-    setIsClicked(true);
-
+    // Smoothly reset tilt and trigger click animation
     const tl = gsap.timeline({
       onComplete: () => navigate(targetRoute)
     });
 
-    // Reset tilt and scale down in sync
-    tl.to(innerCardRef.current, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.15,
-      ease: "power2.out"
-    }, 0)
-    .to(cardRef.current, {
-      scale: 0.94,
-      duration: 0.15,
-      ease: "power2.inOut"
-    }, 0)
-    .to(cardRef.current, {
-      scale: 1,
-      duration: 0.3,
-      ease: "elastic.out(1, 0.8)"
-    });
+    // Reset tilt instantly or very quickly
+    setRotateX(0);
+    setRotateY(0);
 
-    // Enhanced flash feedback
+    tl.to(cardRef.current, {
+      scale: 0.95,
+      duration: 0.1,
+      ease: "power2.inOut"
+    })
+      .to(cardRef.current, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+
+    // Add a quick flash to the card body
     const cardBody = cardRef.current.querySelector('.card-body-inner');
     if (cardBody) {
       gsap.to(cardBody, {
         borderColor: 'rgba(196,242,13,1)',
-        backgroundColor: 'rgba(196,242,13,0.1)',
-        boxShadow: '0 0 40px rgba(196,242,13,0.5)',
+        boxShadow: '0 0 30px rgba(196,242,13,0.4)',
         duration: 0.15,
         yoyo: true,
         repeat: 1
@@ -248,12 +241,11 @@ const ServiceCard = ({ service, index }) => {
       }}
     >
       <div
-        ref={innerCardRef}
         className="w-full h-full relative cursor-default"
         style={{
-          transform: isClicked ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: 'preserve-3d',
-          transition: isClicked ? 'none' : (isHovered ? 'transform 0.15s ease-out' : 'transform 0.4s ease-out'),
+          transition: isHovered ? 'transform 0.15s ease-out' : 'transform 0.4s ease-out',
         }}
       >
         {/* Glow orb behind card */}
@@ -435,7 +427,7 @@ const Service = () => {
       `}</style>
 
       <section
-        className="relative w-full bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 overflow-visible"
+        className="relative w-full bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 overflow-x-hidden"
         id="services"
       >
 
@@ -507,7 +499,7 @@ const Service = () => {
                 key={index}
                 className={
                   index === 3 ? "lg:col-span-1 lg:col-start-1" :
-                  index === 4 ? "sm:col-span-2" : ""
+                    index === 4 ? "sm:col-span-2" : ""
                 }
               >
                 <ServiceCard service={service} index={index} />

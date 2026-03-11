@@ -206,7 +206,7 @@ const UpperText = ({ onIndexChange: externalCb } = {}) => {
   const { displayed, textIdx, registerCallback } = useTypingCycle(TEXTS);
 
   useEffect(() => {
-    registerCallback(externalCb || (() => {}));
+    registerCallback(externalCb || (() => { }));
   }, [registerCallback, externalCb]);
 
   return (
@@ -281,4 +281,4 @@ const UpperText = ({ onIndexChange: externalCb } = {}) => {
   );
 };
 
-export default UpperText;
+export default UpperText;

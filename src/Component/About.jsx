@@ -208,16 +208,16 @@ const AboutCard = ({ item, index }) => {
       duration: 0.15,
       ease: "power2.out"
     }, 0)
-    .to(cardRef.current, {
-      scale: 0.94,
-      duration: 0.15,
-      ease: "power2.inOut"
-    }, 0)
-    .to(cardRef.current, {
-      scale: 1,
-      duration: 0.3,
-      ease: "elastic.out(1, 0.8)"
-    });
+      .to(cardRef.current, {
+        scale: 0.94,
+        duration: 0.15,
+        ease: "power2.inOut"
+      }, 0)
+      .to(cardRef.current, {
+        scale: 1,
+        duration: 0.3,
+        ease: "elastic.out(1, 0.8)"
+      });
 
     const cardBody = cardRef.current.querySelector('.card-body-inner');
     if (cardBody) {
@@ -470,7 +470,7 @@ const About = () => {
             </h2>
 
             {/* Stats row */}
-            <div className="w-full flex justify-between mb-6 px-2 py-4 border-y border-[#C4F20D]/10">
+            <div className="stats-row w-full flex justify-between mb-6 px-2 py-4 border-y border-[#C4F20D]/10">
               <AnimatedStat value={120} label="Projects" delay={400} />
               <div className="w-px bg-[#C4F20D]/10" />
               <AnimatedStat value={50} label="Clients" delay={600} />

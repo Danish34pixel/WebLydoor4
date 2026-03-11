@@ -169,16 +169,16 @@ const BlogCard = ({ item, index }) => {
       duration: 0.15,
       ease: "power2.out"
     }, 0)
-    .to(cardRef.current, {
-      scale: 0.94,
-      duration: 0.15,
-      ease: "power2.inOut"
-    }, 0)
-    .to(cardRef.current, {
-      scale: 1,
-      duration: 0.3,
-      ease: "elastic.out(1, 0.8)"
-    });
+      .to(cardRef.current, {
+        scale: 0.94,
+        duration: 0.15,
+        ease: "power2.inOut"
+      }, 0)
+      .to(cardRef.current, {
+        scale: 1,
+        duration: 0.3,
+        ease: "elastic.out(1, 0.8)"
+      });
 
     const cardBody = cardRef.current.querySelector('.card-body-inner');
     if (cardBody) {
@@ -383,12 +383,14 @@ const Blog = () => {
           }
         }
 
-        /* Left sticky panel */
-        #blog-sticky-left {
-          position: sticky;
-          top: 90px;
-          align-self: start;
-          z-index: 20;
+        /* Left sticky panel — only sticky on desktop (2-col layout) */
+        @media (min-width: 1024px) {
+          #blog-sticky-left {
+            position: sticky;
+            top: 90px;
+            align-self: start;
+            z-index: 20;
+          }
         }
       `}</style>
 
