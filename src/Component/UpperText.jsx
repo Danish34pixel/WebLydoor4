@@ -18,28 +18,6 @@ const styles = {
     padding: '0 16px',
     paddingBottom: '22vh', /* Shifting the visual center upward */
   },
-  // Subtle grid overlay
-  gridOverlay: {
-    position: 'absolute',
-    inset: 0,
-    backgroundImage:
-      'linear-gradient(rgba(196,242,13,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(196,242,13,0.04) 1px, transparent 1px)',
-    backgroundSize: '60px 60px',
-    pointerEvents: 'none',
-    zIndex: 0,
-  },
-  // Glow blob behind content
-  glowBlob: {
-    position: 'absolute',
-    top: '10%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '60vw',
-    height: '40vh',
-    background: 'radial-gradient(ellipse, rgba(196,242,13,0.12) 0%, transparent 70%)',
-    pointerEvents: 'none',
-    zIndex: 0,
-  },
   badgeWrap: {
     position: 'relative',
     zIndex: 2,
@@ -252,10 +230,6 @@ const UpperText = ({ onIndexChange: externalCb } = {}) => {
       `}</style>
 
       <div style={styles.root}>
-        {/* Background layers */}
-        <div style={styles.gridOverlay} />
-        <div style={styles.glowBlob} />
-
         {/* Live badge */}
         <div style={styles.badgeWrap}>
           <span style={styles.badge}>

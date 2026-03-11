@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import gsap from "gsap";
 
 const TYPING_TEXTS = [
-  "💡 Expert Insights: We share deep knowledge on digital marketing strategies.",
-  "🚀 Trend Analysis: Stay ahead of the curve with the latest industry shifts.",
-  "📈 Actionable Tips: Learn practical ways to boost your online presence.",
-  "🔍 SEO Strategies: Discover proven methods to climb search engine rankings.",
-  "💻 Tech Updates: Keep up with modern development practices and standards."
+  " Expert Insights: We share deep knowledge on digital marketing strategies.",
+  " Trend Analysis: Stay ahead of the curve with the latest industry shifts.",
+  " Actionable Tips: Learn practical ways to boost your online presence.",
+  " SEO Strategies: Discover proven methods to climb search engine rankings.",
+  " Tech Updates: Keep up with modern development practices and standards."
 ];
 
 function useSimpleTyping(texts, typingSpeed = 50, deletingSpeed = 30, pause = 1500) {
@@ -61,10 +63,6 @@ function useInView(threshold = 0.15) {
   return [ref, inView];
 }
 
-// Floating particle
-const Particle = ({ style }) => (
-  <div className="absolute rounded-full bg-[#C4F20D] pointer-events-none" style={style} />
-);
 
 // Animated SVG circuit lines for right side
 const CircuitRight = () => (
@@ -121,11 +119,14 @@ const blogItems = [
 ];
 
 const BlogCard = ({ item, index }) => {
+  const navigate = useNavigate();
   const cardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [inViewRef, inView] = useInView(0.1);
+  const innerCardRef = useRef(null);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -146,13 +147,60 @@ const BlogCard = ({ item, index }) => {
 
   const delay = index * 110;
 
+  const handleClick = () => {
+    const routeMap = {
+      'What You Will Learn': '/blog/learn',
+      'Stay Updated': '/blog/updates',
+      'Learn and Grow': '/blog/growth'
+    };
+    const targetRoute = routeMap[item.title];
+    if (!targetRoute) return;
+
+    setIsClicked(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => navigate(targetRoute)
+    });
+
+    // Reset tilt and scale down in sync
+    tl.to(innerCardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.15,
+      ease: "power2.out"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 0.94,
+      duration: 0.15,
+      ease: "power2.inOut"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: "elastic.out(1, 0.8)"
+    });
+
+    const cardBody = cardRef.current.querySelector('.card-body-inner');
+    if (cardBody) {
+      gsap.to(cardBody, {
+        borderColor: 'rgba(196,242,13,1)',
+        backgroundColor: 'rgba(196,242,13,0.1)',
+        boxShadow: '0 0 40px rgba(196,242,13,0.5)',
+        duration: 0.15,
+        yoyo: true,
+        repeat: 1
+      });
+    }
+  };
+
   return (
     <div
       ref={el => { cardRef.current = el; inViewRef.current = el; }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setIsHovered(true)}
-      className="group relative w-full h-full"
+      onClick={handleClick}
+      className="group relative w-full h-full cursor-pointer transition-none"
       style={{
         perspective: '1000px',
         opacity: inView ? 1 : 0,
@@ -161,11 +209,12 @@ const BlogCard = ({ item, index }) => {
       }}
     >
       <div
-        className="w-full h-full relative cursor-default"
+        ref={innerCardRef}
+        className="w-full h-full relative"
         style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transform: isClicked ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: 'preserve-3d',
-          transition: 'transform 0.15s ease-out',
+          transition: isClicked ? 'none' : (isHovered ? 'transform 0.15s ease-out' : 'transform 0.4s ease-out'),
         }}
       >
         {/* Glow orb behind card */}
@@ -181,7 +230,7 @@ const BlogCard = ({ item, index }) => {
 
         {/* Card Body */}
         <div
-          className="w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-5 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          className="card-body-inner w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-5 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
           style={{ transition: 'border-color 0.4s, box-shadow 0.4s', boxShadow: isHovered ? '0 8px 40px rgba(196,242,13,0.1)' : '' }}
         >
           {/* Scan line sweep on hover */}
@@ -290,18 +339,6 @@ const Blog = () => {
   const displayedText = useSimpleTyping(TYPING_TEXTS);
   const [headerRef, headerInView] = useInView(0.1);
 
-  // Static particles generated once
-  const particles = useRef(
-    Array.from({ length: 16 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 3 + 1,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      duration: `${Math.random() * 6 + 5}s`,
-      delay: `${Math.random() * 5}s`,
-      opacity: Math.random() * 0.4 + 0.1,
-    }))
-  ).current;
 
   return (
     <>
@@ -359,27 +396,12 @@ const Blog = () => {
         className="relative w-full bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 overflow-visible"
         id="blog"
       >
-        {/* Floating particles */}
-        {particles.map(p => (
-          <Particle key={p.id} style={{
-            width: p.size, height: p.size,
-            left: p.left, top: p.top,
-            opacity: p.opacity,
-            '--op': p.opacity,
-            animation: `float-up ${p.duration} ${p.delay} ease-in-out infinite`,
-          }} />
-        ))}
 
         {/* Circuit decoration right side */}
         <div className="absolute right-0 top-0 h-full w-64 overflow-hidden pointer-events-none">
           <CircuitRight />
         </div>
 
-        {/* Ambient radial glow */}
-        <div
-          className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(196,242,13,0.04) 0%, transparent 70%)', filter: 'blur(40px)' }}
-        />
 
         {/* Main layout wrapper */}
         <div id="blog-inner" className="max-w-7xl mx-auto w-full relative z-10">

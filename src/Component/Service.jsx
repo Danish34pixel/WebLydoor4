@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 
 const TYPING_TEXTS = [
   "Website Development: WeblyDoor creates modern, responsive, and user-friendly websites tailored to meet the unique needs of each business.",
@@ -66,10 +68,6 @@ function useInView(threshold = 0.15) {
   return [ref, inView];
 }
 
-// Floating particle
-const Particle = ({ style }) => (
-  <div className="absolute rounded-full bg-[#C4F20D] pointer-events-none" style={style} />
-);
 
 // Animated SVG circuit lines for right side
 const CircuitRight = () => (
@@ -106,12 +104,11 @@ const services = [
     ),
   },
   {
-    title: 'Search Engine Optimization',
-    description: 'Our SEO services help your website rank higher in search engines. We use effective strategies to improve visibility, increase organic traffic, and bring more potential customers to your business.',
+    title: 'App Development',
+    description: 'Custom mobile applications for iOS and Android tailored to your business needs. We focus on performance, user experience, and scalable architecture.',
     icon: (
       <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 13a3 3 0 100-6 3 3 0 000 6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
       </svg>
     ),
   },
@@ -126,11 +123,21 @@ const services = [
     ),
   },
   {
-    title: 'Branding & Design',
-    description: 'A strong brand identity helps businesses stand out. We design professional logos, graphics, and brand visuals that create a lasting impression on your audience.',
+    title: 'Graphic and Logo',
+    description: 'Professional visual identities that command attention. We design logos, brand assets, and digital graphics that elevate your professional standing.',
     icon: (
       <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+    ),
+  },
+  {
+    title: 'SEO',
+    description: 'Our SEO services help your website rank higher in search engines. We use effective strategies to improve visibility and increase organic traffic dramatically.',
+    icon: (
+      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 13a3 3 0 100-6 3 3 0 000 6z" />
       </svg>
     ),
   },
@@ -147,11 +154,14 @@ const services = [
 ];
 
 const ServiceCard = ({ service, index }) => {
+  const navigate = useNavigate();
   const cardRef = useRef(null);
+  const innerCardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [inViewRef, inView] = useInView(0.1);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -172,13 +182,64 @@ const ServiceCard = ({ service, index }) => {
 
   const delay = index * 110;
 
+  const handleClick = () => {
+    const routeMap = {
+      'Website Development': '/website-development',
+      'App Development': '/app-development',
+      'Digital Marketing': '/digital-marketing',
+      'Graphic and Logo': '/graphic-logo',
+      'SEO': '/seo',
+      'Website Maintenance': '/maintenance'
+    };
+    const targetRoute = routeMap[service.title];
+    if (!targetRoute) return;
+
+    setIsClicked(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => navigate(targetRoute)
+    });
+
+    // Reset tilt and scale down in sync
+    tl.to(innerCardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.15,
+      ease: "power2.out"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 0.94,
+      duration: 0.15,
+      ease: "power2.inOut"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: "elastic.out(1, 0.8)"
+    });
+
+    // Enhanced flash feedback
+    const cardBody = cardRef.current.querySelector('.card-body-inner');
+    if (cardBody) {
+      gsap.to(cardBody, {
+        borderColor: 'rgba(196,242,13,1)',
+        backgroundColor: 'rgba(196,242,13,0.1)',
+        boxShadow: '0 0 40px rgba(196,242,13,0.5)',
+        duration: 0.15,
+        yoyo: true,
+        repeat: 1
+      });
+    }
+  };
+
   return (
     <div
       ref={el => { cardRef.current = el; inViewRef.current = el; }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setIsHovered(true)}
-      className="group relative w-full h-full"
+      onClick={handleClick}
+      className="group relative w-full h-full cursor-pointer transition-none"
       style={{
         perspective: '1000px',
         opacity: inView ? 1 : 0,
@@ -187,11 +248,12 @@ const ServiceCard = ({ service, index }) => {
       }}
     >
       <div
+        ref={innerCardRef}
         className="w-full h-full relative cursor-default"
         style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transform: isClicked ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: 'preserve-3d',
-          transition: 'transform 0.15s ease-out',
+          transition: isClicked ? 'none' : (isHovered ? 'transform 0.15s ease-out' : 'transform 0.4s ease-out'),
         }}
       >
         {/* Glow orb behind card */}
@@ -207,7 +269,7 @@ const ServiceCard = ({ service, index }) => {
 
         {/* Card Body */}
         <div
-          className="w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-5 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          className="card-body-inner w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-5 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
           style={{ transition: 'border-color 0.4s, box-shadow 0.4s', boxShadow: isHovered ? '0 8px 40px rgba(196,242,13,0.1)' : '' }}
         >
           {/* Scan line sweep on hover */}
@@ -316,18 +378,6 @@ const Service = () => {
   const displayedText = useSimpleTyping(TYPING_TEXTS);
   const [headerRef, headerInView] = useInView(0.1);
 
-  // Static particles generated once
-  const particles = useRef(
-    Array.from({ length: 16 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 3 + 1,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      duration: `${Math.random() * 6 + 5}s`,
-      delay: `${Math.random() * 5}s`,
-      opacity: Math.random() * 0.4 + 0.1,
-    }))
-  ).current;
 
   return (
     <>
@@ -388,27 +438,12 @@ const Service = () => {
         className="relative w-full bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 overflow-visible"
         id="services"
       >
-        {/* Floating particles */}
-        {particles.map(p => (
-          <Particle key={p.id} style={{
-            width: p.size, height: p.size,
-            left: p.left, top: p.top,
-            opacity: p.opacity,
-            '--op': p.opacity,
-            animation: `float-up ${p.duration} ${p.delay} ease-in-out infinite`,
-          }} />
-        ))}
 
         {/* Circuit decoration right side */}
         <div className="absolute right-0 top-0 h-full w-64 overflow-hidden pointer-events-none">
           <CircuitRight />
         </div>
 
-        {/* Ambient radial glow */}
-        <div
-          className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(196,242,13,0.04) 0%, transparent 70%)', filter: 'blur(40px)' }}
-        />
 
         {/* Main layout wrapper — NO overflow:hidden, use overflow:visible */}
         <div id="services-inner" className="max-w-7xl mx-auto w-full relative z-10">

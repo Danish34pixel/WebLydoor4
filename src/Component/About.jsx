@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import gsap from "gsap";
 
 const TYPING_TEXTS = [
   " Customer-Focused Approach: WeblyDoor believes in understanding each client's goals and delivering digital solutions that match their vision and business needs.",
@@ -52,13 +54,6 @@ function useSimpleTyping(texts, typingSpeed = 50, deletingSpeed = 30, pause = 15
   return displayed;
 }
 
-// Floating particle component
-const Particle = ({ style }) => (
-  <div
-    className="absolute rounded-full bg-[#C4F20D] pointer-events-none"
-    style={style}
-  />
-);
 
 // Animated counter for stats
 const AnimatedStat = ({ value, label, delay = 0 }) => {
@@ -159,11 +154,14 @@ function useInView(threshold = 0.15) {
 }
 
 const AboutCard = ({ item, index }) => {
+  const navigate = useNavigate();
   const cardRef = useRef(null);
+  const innerCardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [cardRef2, inView] = useInView(0.1);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -187,13 +185,61 @@ const AboutCard = ({ item, index }) => {
   // Stagger delay per card
   const delay = index * 120;
 
+  const handleClick = () => {
+    const routeMap = {
+      'Our Vision': '/vision',
+      'Our Mission': '/mission',
+      'Our Approach': '/approach',
+      'Our Commitment': '/commitment'
+    };
+    const targetRoute = routeMap[item.title];
+    if (!targetRoute) return;
+
+    setIsClicked(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => navigate(targetRoute)
+    });
+
+    // Reset tilt and scale down in sync
+    tl.to(innerCardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.15,
+      ease: "power2.out"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 0.94,
+      duration: 0.15,
+      ease: "power2.inOut"
+    }, 0)
+    .to(cardRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: "elastic.out(1, 0.8)"
+    });
+
+    const cardBody = cardRef.current.querySelector('.card-body-inner');
+    if (cardBody) {
+      gsap.to(cardBody, {
+        borderColor: 'rgba(196,242,13,1)',
+        backgroundColor: 'rgba(196,242,13,0.1)',
+        boxShadow: '0 0 40px rgba(196,242,13,0.5)',
+        duration: 0.15,
+        yoyo: true,
+        repeat: 1
+      });
+    }
+  };
+
   return (
     <div
       ref={el => { cardRef.current = el; cardRef2.current = el; }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      className="group relative w-full h-full"
+      onClick={handleClick}
+      className="group relative w-full h-full cursor-pointer transition-none"
       style={{
         perspective: '1000px',
         opacity: inView ? 1 : 0,
@@ -202,11 +248,12 @@ const AboutCard = ({ item, index }) => {
       }}
     >
       <div
+        ref={innerCardRef}
         className="w-full h-full relative cursor-default"
         style={{
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transform: isClicked ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: 'preserve-3d',
-          transition: 'transform 0.15s ease-out',
+          transition: isClicked ? 'none' : (isHovered ? 'transform 0.15s ease-out' : 'transform 0.4s ease-out'),
         }}
       >
         {/* Animated glow orb */}
@@ -220,7 +267,7 @@ const AboutCard = ({ item, index }) => {
         />
 
         {/* Card Body */}
-        <div className="w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_8px_40px_rgba(196,242,13,0.12)]"
+        <div className="card-body-inner w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_8px_40px_rgba(196,242,13,0.12)]"
           style={{ transition: 'border-color 0.4s, box-shadow 0.4s' }}>
 
           {/* Scan line sweep on hover */}
@@ -338,18 +385,6 @@ const About = () => {
   const displayedText = useSimpleTyping(TYPING_TEXTS);
   const [headerRef, headerInView] = useInView(0.1);
 
-  // Generate floating particles once
-  const particles = useRef(
-    Array.from({ length: 18 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 3 + 1,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      duration: `${Math.random() * 6 + 5}s`,
-      delay: `${Math.random() * 5}s`,
-      opacity: Math.random() * 0.4 + 0.1,
-    }))
-  ).current;
 
   return (
     <>
@@ -390,27 +425,12 @@ const About = () => {
 
       <section className="relative w-full min-h-screen bg-transparent py-24 sm:py-32 px-4 sm:px-8 xl:px-12 flex flex-col justify-center overflow-hidden" id="about">
 
-        {/* Floating particles */}
-        {particles.map(p => (
-          <Particle key={p.id} style={{
-            width: p.size,
-            height: p.size,
-            left: p.left,
-            top: p.top,
-            opacity: p.opacity,
-            '--op': p.opacity,
-            animation: `float-up ${p.duration} ${p.delay} ease-in-out infinite`,
-          }} />
-        ))}
 
         {/* Circuit decoration (left side) */}
         <div className="absolute left-0 top-0 h-full w-64 overflow-hidden pointer-events-none">
           <CircuitDecoration />
         </div>
 
-        {/* Radial ambient glow */}
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(196,242,13,0.04) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
         {/* Main layout wrapper */}
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
