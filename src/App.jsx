@@ -5,6 +5,7 @@ import UpperText from './Component/UpperText'
 import Service from './Component/Service';
 import About from './Component/About';
 import Blog from './Component/Blog';
+
 import Contact from './Component/Contact';
 
 import Loader from './Component/Loader'
@@ -23,6 +24,10 @@ import Commitment from './Component/Commitment'
 import BlogLearn from './Component/BlogLearn'
 import BlogUpdates from './Component/BlogUpdates'
 import BlogGrowth from './Component/BlogGrowth'
+import WorkWithUs from './Component/WorkWithUs'
+import GrowthOpportunities from './Component/GrowthOpportunities'
+import JoinOurTeam from './Component/JoinOurTeam'
+import Carrier from './Component/carrier';
 
 const Home = () => {
   return (
@@ -43,6 +48,7 @@ const Home = () => {
 
         {/* Blog Section */}
         <Blog />
+        <Carrier/>
         <Contact />
       </div>
     </div>
@@ -72,6 +78,9 @@ const App = () => {
         <Route path="/blog/learn" element={<BlogLearn />} />
         <Route path="/blog/updates" element={<BlogUpdates />} />
         <Route path="/blog/growth" element={<BlogGrowth />} />
+        <Route path="/work-with-us" element={<WorkWithUs />} />
+        <Route path="/growth-opportunities" element={<GrowthOpportunities />} />
+        <Route path="/join-our-team" element={<JoinOurTeam />} />
       </Routes>
     </Router>
   );

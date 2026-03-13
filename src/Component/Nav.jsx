@@ -18,7 +18,8 @@ const Nav = () => {
     { label: "Services", href: "/#services" },
     { label: "About us", href: "/#about" },
     { label: "Blog", href: "/#blog" },
-    { label: "Contact us", href: "/#contact" },
+    { label: "Carrier", href: "/#Carrier" },
+     { label: "Contact us", href: "/#contact" },
   ];
 
   return (
