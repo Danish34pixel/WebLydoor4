@@ -27,7 +27,7 @@ import BlogGrowth from './Component/BlogGrowth'
 import WorkWithUs from './Component/WorkWithUs'
 import GrowthOpportunities from './Component/GrowthOpportunities'
 import JoinOurTeam from './Component/JoinOurTeam'
-import Carrier from './Component/carrier';
+import Carrier from './Component/Carrier';
 
 const Home = () => {
   return (
