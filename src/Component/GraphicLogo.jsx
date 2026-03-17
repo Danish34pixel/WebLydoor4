@@ -55,7 +55,7 @@ const GraphicLogo = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h1 className="text-5xl sm:text-7xl font-extrabold font-['Astro'] tracking-tighter mb-8 leading-none">
+            <h1 className="text-5xl sm:text-7xl font-extrabold font-['Eurostile'] tracking-tighter mb-8 leading-none">
               Graphic & <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white">
                 Logo Design
@@ -66,18 +66,59 @@ const GraphicLogo = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
             {features.map((f, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {f.icon.startsWith('/') ? (
-                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
-                  ) : (
-                    f.icon
-                  )}
+              <div
+                key={i}
+                className="group relative w-full h-full cursor-pointer transition-none"
+                style={{ perspective: '1000px' }}
+              >
+                <div
+                  className="w-full h-full relative cursor-default"
+                  style={{ transformStyle: 'preserve-3d', transition: 'transform 0.4s ease-out' }}
+                >
+                  <div className="absolute inset-0 rounded-2xl -z-10 blur-2xl bg-[radial-gradient(circle_at_50%_50%,rgba(196,242,13,0.2)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-600 transform -translate-z-20 scale-110" />
+
+                  <div className="card-body-inner w-full h-full bg-[#050702]/60 backdrop-blur-xl border border-[#C4F20D]/10 group-hover:border-[#C4F20D]/50 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-4 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-400 group-hover:shadow-[0_12px_45px_rgba(196,242,13,0.12)]">
+                    
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-[#C4F20D]/30 to-transparent -top-[5%] group-hover:top-[105%] transition-all duration-1000 ease-in-out" />
+                    </div>
+
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 pointer-events-none rounded-2xl bg-[linear-gradient(rgba(196,242,13,1)_1px,transparent_1px),linear-gradient(90deg,rgba(196,242,13,1)_1px,transparent_1px)] bg-[size:20px_20px]" />
+
+                    <div className="mb-2 group-hover:-translate-y-2 group-hover:drop-shadow-[0_0_15px_rgba(196,242,13,0.3)] transition-all duration-300 pointer-events-none" style={{ transform: 'translateZ(30px)' }}>
+                      {f.icon.startsWith('/') ? (
+                        <div className="w-16 h-16 rounded-2xl p-2.5 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-white/20 relative">
+                          <img src={f.icon} alt={f.title} className="max-w-full max-h-full object-contain relative z-10" />
+                        </div>
+                      ) : (
+                        <div className="text-4xl text-[#C4F20D] w-16 h-16 flex items-center justify-center bg-[#C4F20D]/10 rounded-2xl ring-1 ring-[#C4F20D]/30 shadow-[0_0_15px_rgba(196,242,13,0.1)]">
+                          {f.icon}
+                        </div>
+                      )}
+                    </div>
+
+                    <div style={{ transform: 'translateZ(40px)' }} className="z-10 bg-[#050702]/50 px-2 py-1 rounded inline-block -ml-2">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Eurostile'] tracking-wider leading-tight group-hover:drop-shadow-[0_0_20px_rgba(196,242,13,0.5)] transition-all duration-400">
+                        {f.title}
+                      </h3>
+                    </div>
+
+                    <div style={{ transform: 'translateZ(20px)' }}>
+                      <p className="text-[0.95rem] text-gray-300/90 leading-relaxed font-sans mt-2">
+                        {f.desc}
+                      </p>
+                    </div>
+
+                    <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-[#C4F20D] opacity-0 group-hover:opacity-100 rounded-tr-2xl -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
+                    <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#C4F20D] opacity-0 group-hover:opacity-50 rounded-bl-2xl translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
+
+                    <div className="absolute bottom-4 right-5 text-6xl font-extrabold font-['Eurostile'] select-none pointer-events-none text-[rgba(196,242,13,0.04)] group-hover:text-[rgba(196,242,13,0.08)] transition-colors duration-400">
+                      0{i + 1}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -85,25 +126,25 @@ const GraphicLogo = () => {
 
         <section className="mt-32 p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4F20D]/10 blur-[100px] -z-10 rounded-full" />
-          <h2 className="text-3xl sm:text-5xl font-['Astro'] mb-12">Visual Excellence</h2>
+          <h2 className="text-3xl sm:text-5xl font-['Eurostile'] mb-12">Visual Excellence</h2>
           
           <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">01</div>
+              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Eurostile']">01</div>
               <h4 className="text-xl font-bold mb-4">Creative Soul</h4>
               <p className="text-gray-400 text-sm leading-relaxed">
                 We don't just use software; we use imagination. Every design is a unique piece of art crafted to fit your brand's story.
               </p>
             </div>
             <div>
-              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">02</div>
+              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Eurostile']">02</div>
               <h4 className="text-xl font-bold mb-4">Strategic Impact</h4>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Design with a purpose. Every color and line is chosen to evoke specific emotions and drive user action.
               </p>
             </div>
             <div>
-              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">03</div>
+              <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Eurostile']">03</div>
               <h4 className="text-xl font-bold mb-4">Brand Authority</h4>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Look like the leader you are. Premium design builds instant trust and positions you at the top of your market.

@@ -306,7 +306,7 @@ const ServiceCard = ({ service, index }) => {
           {/* Title */}
           <div style={{ transform: 'translateZ(40px)' }} className="z-10 bg-[#050702]/50 px-2 py-1 rounded inline-block -ml-2">
             <h3
-              className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Astro'] tracking-wider leading-tight"
+              className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-sans tracking-wider leading-tight"
               style={{ textShadow: isHovered ? '0 0 20px rgba(196,242,13,0.5)' : 'none', transition: 'text-shadow 0.4s' }}
             >
               {service.title}
@@ -332,7 +332,7 @@ const ServiceCard = ({ service, index }) => {
 
           {/* Watermark index */}
           <div
-            className="absolute bottom-4 right-5 text-6xl font-extrabold font-['Astro'] select-none pointer-events-none"
+            className="absolute bottom-4 right-5 text-6xl font-extrabold font-sans select-none pointer-events-none"
             style={{ color: isHovered ? 'rgba(196,242,13,0.08)' : 'rgba(196,242,13,0.04)', transition: 'color 0.4s' }}
           >
             0{index + 1}
@@ -394,12 +394,14 @@ const Service = () => {
 
         /* Left sticky panel */
         #services-sticky-left {
-          position: sticky;
-          /* 32px gap from top of viewport while scrolling */
-          top: 90px;
-          /* Must NOT set max-height that cuts it short — let it be as tall as its content */
           align-self: start;
           z-index: 20;
+        }
+        @media (min-width: 1024px) {
+          #services-sticky-left {
+            position: sticky;
+            top: 90px;
+          }
         }
       `}</style>
 
@@ -449,7 +451,7 @@ const Service = () => {
             </div>
 
             {/* Title */}
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Astro'] mb-6 tracking-wider">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-sans mb-6 tracking-wider">
               Weblydoor
             </h2>
 
@@ -472,13 +474,7 @@ const Service = () => {
           {/* ═══ CARDS GRID ═══ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-12 lg:mt-0">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className={
-                  index === 3 ? "lg:col-span-1 lg:col-start-1" :
-                    index === 4 ? "sm:col-span-2" : ""
-                }
-              >
+              <div key={index} className="h-full">
                 <ServiceCard service={service} index={index} />
               </div>
             ))}

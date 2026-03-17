@@ -230,76 +230,38 @@ const BlogCard = ({ item, index }) => {
 
         {/* Card Body */}
         <div
-          className="card-body-inner w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start gap-5 overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-          style={{ transition: 'border-color 0.4s, box-shadow 0.4s', boxShadow: isHovered ? '0 8px 40px rgba(196,242,13,0.1)' : '' }}
+          className="card-body-inner w-full h-full bg-[#050702]/60 backdrop-blur-xl border border-[#C4F20D]/10 group-hover:border-[#C4F20D]/50 rounded-2xl p-6 sm:p-8 flex flex-col items-start overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-400 group-hover:shadow-[0_12px_45px_rgba(196,242,13,0.12)]"
+          style={{ transition: 'border-color 0.4s, box-shadow 0.4s' }}
         >
           {/* Scan line sweep on hover */}
           <div
-            className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl"
-            style={{ opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s' }}
+            className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             <div
-              className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-[#C4F20D]/40 to-transparent"
-              style={{
-                top: isHovered ? '105%' : '-5%',
-                transition: isHovered ? 'top 1.3s cubic-bezier(0.4,0,0.2,1)' : 'none',
-              }}
+              className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-[#C4F20D]/30 to-transparent -top-[5%] group-hover:top-[105%] transition-all duration-1000 ease-in-out"
             />
           </div>
 
           {/* Tech grid overlay */}
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 pointer-events-none rounded-2xl"
-            style={{
-              backgroundImage: 'linear-gradient(rgba(196,242,13,1) 1px, transparent 1px), linear-gradient(90deg, rgba(196,242,13,1) 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-            }}
-          />
-
-          {/* Ripple burst on enter */}
-          {isHovered && (
-            <div className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden">
-              <div style={{
-                position: 'absolute', top: '50%', left: '50%',
-                width: 0, height: 0,
-                borderRadius: '50%',
-                background: 'rgba(196,242,13,0.06)',
-                transform: 'translate(-50%,-50%)',
-                animation: 'ripple 0.65s ease-out forwards',
-              }} />
-            </div>
-          )}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 pointer-events-none rounded-2xl bg-[linear-gradient(rgba(196,242,13,1)_1px,transparent_1px),linear-gradient(90deg,rgba(196,242,13,1)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
           {/* Icon */}
-          <div
-            className="w-16 h-16 rounded-full bg-[#C4F20D]/10 flex items-center justify-center border border-[#C4F20D]/30 relative shrink-0"
-            style={{
-              transform: 'translateZ(30px)',
-              boxShadow: isHovered ? '0 0 25px rgba(196,242,13,0.4)' : '0 0 15px rgba(196,242,13,0.15)',
-              transition: 'box-shadow 0.4s',
-            }}
-          >
-            <div
-              className="absolute inset-0 rounded-full border border-[#C4F20D]/40"
-              style={{
-                animation: isHovered ? 'spin 3s linear infinite' : 'none',
-                borderStyle: 'dashed',
-              }}
-            />
-            <div className="absolute inset-0 rounded-full border border-[#C4F20D]/30 animate-ping opacity-20" />
-            <div style={{
-              transform: isHovered ? 'scale(1.2) translateZ(5px)' : 'scale(1)',
-              transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
-            }}>
-              {item.icon}
-            </div>
+          <div className="mb-2 mt-2 group-hover:-translate-y-2 group-hover:drop-shadow-[0_0_15px_rgba(196,242,13,0.3)] transition-all duration-300 pointer-events-none" style={{ transform: 'translateZ(30px)' }}>
+            {typeof item.icon === 'string' ? (
+              <div className="w-16 h-16 bg-white/95 rounded-2xl p-2.5 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-white/20 relative">
+                <img src={item.icon} alt={item.title} className="max-w-full max-h-full object-contain relative z-10" />
+              </div>
+            ) : (
+              <div className="text-4xl text-[#C4F20D] w-16 h-16 flex items-center justify-center bg-[#C4F20D]/10 rounded-2xl ring-1 ring-[#C4F20D]/30 shadow-[0_0_15px_rgba(196,242,13,0.1)]">
+                {item.icon}
+              </div>
+            )}
           </div>
 
           {/* Title */}
-          <div style={{ transform: 'translateZ(40px)' }} className="z-10 bg-[#050702]/50 px-2 py-1 rounded inline-block -ml-2">
+          <div style={{ transform: 'translateZ(40px)' }} className="z-10 bg-[#050702]/50 px-2 py-1 rounded inline-block -ml-2 mt-2">
             <h3
-              className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Astro'] tracking-wider leading-tight"
-              style={{ textShadow: isHovered ? '0 0 20px rgba(196,242,13,0.5)' : 'none', transition: 'text-shadow 0.4s' }}
+              className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Eurostile'] tracking-wider leading-tight group-hover:drop-shadow-[0_0_20px_rgba(196,242,13,0.5)] transition-all duration-400"
             >
               {item.title}
             </h3>
@@ -313,19 +275,12 @@ const BlogCard = ({ item, index }) => {
           </div>
 
           {/* Corner accents */}
-          <div
-            className="absolute top-0 right-0 w-24 h-24 border-t border-r border-[#C4F20D] opacity-0 group-hover:opacity-100 rounded-tr-2xl -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none"
-            style={{ transition: 'opacity 0.5s, transform 0.5s' }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#C4F20D] opacity-0 group-hover:opacity-50 rounded-bl-2xl translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none"
-            style={{ transition: 'opacity 0.5s, transform 0.5s' }}
-          />
+          <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-[#C4F20D] opacity-0 group-hover:opacity-100 rounded-tr-2xl -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
+          <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#C4F20D] opacity-0 group-hover:opacity-50 rounded-bl-2xl translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
 
           {/* Watermark index */}
           <div
-            className="absolute bottom-4 right-5 text-6xl font-extrabold font-['Astro'] select-none pointer-events-none"
-            style={{ color: isHovered ? 'rgba(196,242,13,0.08)' : 'rgba(196,242,13,0.04)', transition: 'color 0.4s' }}
+            className="absolute bottom-4 right-5 text-6xl font-extrabold font-['Eurostile'] select-none pointer-events-none text-[rgba(196,242,13,0.04)] group-hover:text-[rgba(196,242,13,0.08)] transition-colors duration-400"
           >
             0{index + 1}
           </div>
@@ -440,7 +395,7 @@ const Blog = () => {
             </div>
 
             {/* Title */}
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Astro'] mb-6 tracking-wider">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Eurostile'] mb-6 tracking-wider">
               Weblydoor Blog
             </h2>
 

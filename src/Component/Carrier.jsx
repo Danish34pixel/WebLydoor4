@@ -194,55 +194,59 @@ const CareerCard = ({ item, index }) => {
         />
 
         {/* Card Body */}
-        <div className="card-body-inner w-full h-full bg-[#050702]/80 backdrop-blur-xl border border-[#C4F20D]/20 group-hover:border-[#C4F20D]/70 rounded-2xl p-6 sm:p-8 flex flex-col items-start overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_8px_40px_rgba(196,242,13,0.12)]"
-          style={{ transition: 'border-color 0.4s, box-shadow 0.4s' }}>
+        <div
+          className="card-body-inner w-full h-full bg-[#050702]/60 backdrop-blur-xl border border-[#C4F20D]/10 group-hover:border-[#C4F20D]/50 rounded-2xl p-6 sm:p-8 flex flex-col items-start overflow-hidden relative shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-400 group-hover:shadow-[0_12px_45px_rgba(196,242,13,0.12)]"
+          style={{ transition: 'border-color 0.4s, box-shadow 0.4s' }}
+        >
+          {/* Scan line sweep on hover */}
+          <div
+            className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <div
+              className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-[#C4F20D]/30 to-transparent -top-[5%] group-hover:top-[105%] transition-all duration-1000 ease-in-out"
+            />
+          </div>
 
           {/* Tech grid overlay */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.04] transition-opacity duration-500 pointer-events-none rounded-2xl" style={{
-            backgroundImage: 'linear-gradient(rgba(196,242,13,1) 1px, transparent 1px), linear-gradient(90deg, rgba(196,242,13,1) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }} />
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500 pointer-events-none rounded-2xl bg-[linear-gradient(rgba(196,242,13,1)_1px,transparent_1px),linear-gradient(90deg,rgba(196,242,13,1)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
-          {/* Icon + Title */}
-          <div className="flex items-center gap-4 mb-4 mt-2" style={{ transform: 'translateZ(30px)' }}>
-            <div className="relative w-12 h-12 rounded-full bg-[#C4F20D]/10 flex items-center justify-center border border-[#C4F20D]/30 shadow-[0_0_15px_rgba(196,242,13,0.15)] group-hover:shadow-[0_0_25px_rgba(196,242,13,0.4)] shrink-0"
-              style={{ transition: 'box-shadow 0.4s' }}>
-              <div
-                className="absolute inset-0 rounded-full border border-[#C4F20D]/40"
-                style={{
-                  animation: isHovered ? 'spin 3s linear infinite' : 'none',
-                  borderStyle: 'dashed',
-                }}
-              />
-              <div className="absolute inset-0 rounded-full border border-[#C4F20D]/30 animate-ping opacity-20" />
-              <div style={{
-                transform: isHovered ? 'scale(1.2) translateZ(5px)' : 'scale(1)',
-                transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
-              }}>
+          {/* Icon */}
+          <div className="mb-2 mt-2 group-hover:-translate-y-2 group-hover:drop-shadow-[0_0_15px_rgba(196,242,13,0.3)] transition-all duration-300 pointer-events-none" style={{ transform: 'translateZ(30px)' }}>
+            {typeof item.icon === 'string' ? (
+              <div className="w-16 h-16 bg-white/95 rounded-2xl p-2.5 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-white/20 relative">
+                <img src={item.icon} alt={item.title} className="max-w-full max-h-full object-contain relative z-10" />
+              </div>
+            ) : (
+              <div className="text-4xl text-[#C4F20D] w-16 h-16 flex items-center justify-center bg-[#C4F20D]/10 rounded-2xl ring-1 ring-[#C4F20D]/30 shadow-[0_0_15px_rgba(196,242,13,0.1)]">
                 {item.icon}
               </div>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Astro'] tracking-wider leading-tight"
-              style={{ textShadow: isHovered ? '0 0 20px rgba(196,242,13,0.5)' : 'none', transition: 'text-shadow 0.4s' }}>
+            )}
+          </div>
+
+          {/* Title */}
+          <div style={{ transform: 'translateZ(40px)' }} className="z-10 bg-[#050702]/50 px-2 py-1 rounded inline-block -ml-2 mt-2">
+            <h3
+              className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Eurostile'] tracking-wider leading-tight group-hover:drop-shadow-[0_0_20px_rgba(196,242,13,0.5)] transition-all duration-400"
+            >
               {item.title}
             </h3>
           </div>
 
-          <div style={{ transform: 'translateZ(20px)' }} className="mt-2 text-left">
+          {/* Description */}
+          <div style={{ transform: 'translateZ(20px)' }}>
             <p className="text-[0.95rem] text-gray-300/90 leading-relaxed font-sans mt-2">
               {item.description}
             </p>
           </div>
 
           {/* Corner accents */}
-          <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-[#C4F20D] opacity-0 group-hover:opacity-100 rounded-tr-2xl -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none"
-            style={{ transition: 'opacity 0.5s, transform 0.5s' }} />
-          <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#C4F20D] opacity-0 group-hover:opacity-50 rounded-bl-2xl translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none"
-            style={{ transition: 'opacity 0.5s, transform 0.5s' }} />
+          <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-[#C4F20D] opacity-0 group-hover:opacity-100 rounded-tr-2xl -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
+          <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#C4F20D] opacity-0 group-hover:opacity-50 rounded-bl-2xl translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none transition-all duration-500" />
 
-          {/* Watermark */}
-          <div className="absolute bottom-4 right-5 text-6xl font-extrabold text-[#C4F20D]/5 font-['Astro'] select-none pointer-events-none"
-            style={{ transition: 'color 0.4s', color: isHovered ? 'rgba(196,242,13,0.08)' : 'rgba(196,242,13,0.04)' }}>
+          {/* Watermark index */}
+          <div
+            className="absolute bottom-4 right-5 text-6xl font-extrabold font-['Eurostile'] select-none pointer-events-none text-[rgba(196,242,13,0.04)] group-hover:text-[rgba(196,242,13,0.08)] transition-colors duration-400"
+          >
             0{index + 1}
           </div>
         </div>
@@ -294,7 +298,7 @@ const Carrier = () => {
               <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-[#C4F20D]" />
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Astro'] mb-6 tracking-wider">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#C4F20D] to-white font-['Eurostile'] mb-6 tracking-wider">
               Carrier at Weblydoor
             </h2>
             
@@ -322,7 +326,7 @@ const Carrier = () => {
           <div className="mt-20 text-center">
             <a 
               href="mailto:danishkhannn34@gmail.com"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#C4F20D] text-black font-extrabold font-['Astro'] tracking-widest rounded-full hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(196,242,13,0.3)] hover:shadow-[0_0_50px_rgba(196,242,13,0.5)]"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[#C4F20D] text-black font-extrabold font-['Eurostile'] tracking-widest rounded-full hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(196,242,13,0.3)] hover:shadow-[0_0_50px_rgba(196,242,13,0.5)]"
             >
               SEND RESUME
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
