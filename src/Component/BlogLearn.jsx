@@ -20,22 +20,22 @@ const BlogLearn = () => {
     {
       title: "Market Analysis",
       desc: "Learn how to dissect your niche and find the gaps that your competitors are missing.",
-      icon: "📊"
+      icon: "/Maintainance.png"
     },
     {
       title: "Content Mastery",
       desc: "Discover the secrets of creating content that doesn't just get clicks, but builds authority and trust.",
-      icon: "✍️"
+      icon: "/ContentStray.png"
     },
     {
       title: "SEO Foundations",
       desc: "Master the basics of search engine optimization to ensure your voice is heard in the digital noise.",
-      icon: "🔍"
+      icon: "/SeoFound.png"
     },
     {
       title: "Brand Strategy",
       desc: "Understand how to build a visual and verbal identity that resonates deeply with your target audience.",
-      icon: "🎨"
+      icon: "/Brand.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const BlogLearn = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

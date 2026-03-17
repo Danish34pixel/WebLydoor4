@@ -20,22 +20,22 @@ const Vision = () => {
     {
       title: "Global Impact",
       desc: "Our vision extends beyond local markets. We aim to create digital solutions that resonate on a global scale.",
-      icon: "🌍"
+      icon: "/GlobalImp.png"
     },
     {
       title: "Future-Ready",
       desc: "We stay ahead of technological curves, ensuring that our clients are always prepared for the next digital shift.",
-      icon: "🔭"
+      icon: "/Fututre.png"
     },
     {
       title: "Trusted Partnership",
       desc: "We don't just work for you; we work with you. Our goal is to be the bedrock of your digital success.",
-      icon: "🤝"
+      icon: "/Partnership.png"
     },
     {
       title: "Ethical Innovation",
       desc: "Innovation with integrity. We believe in building a digital future that is inclusive, secure, and sustainable.",
-      icon: "⚖️"
+      icon: "/EthicalInnov.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const Vision = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

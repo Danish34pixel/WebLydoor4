@@ -57,8 +57,8 @@ const GrowthOpportunities = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const tl = gsap.timeline();
-    tl.fromTo(contentRef.current, 
-      { opacity: 0, y: 20 }, 
+    tl.fromTo(contentRef.current,
+      { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.5 }
     );
   }, []);
@@ -67,30 +67,30 @@ const GrowthOpportunities = () => {
     {
       title: "Learning Resources",
       desc: "Access to the latest courses, certifications, and resources to help you stay at the top of your game.",
-      icon: "📚"
+      icon: "/Learning.png"
     },
     {
       title: "Skill Workshops",
       desc: "Regular internal and external workshops to sharpen your digital and soft skills.",
-      icon: "🛠️"
+      icon: "/WorkShop.png"
     },
     {
       title: "Career Mentorship",
       desc: "Get guidance from industry experts and experienced leaders to navigate your career path.",
-      icon: "👨‍🏫"
+      icon: "/Carrer.png"
     },
     {
       title: "Promising Futures",
       desc: "We believe in promoting from within. Your growth at Weblydoor is limited only by your ambition.",
-      icon: "📈"
+      icon: "/Future!.png"
     }
   ];
 
   return (
     <div ref={containerRef} className="w-full min-h-screen bg-transparent text-white selection:bg-[#C4F20D] selection:text-black">
-      
+
       <main ref={contentRef} className="max-w-7xl mx-auto px-4 sm:px-8 xl:px-12 pt-10 pb-20 relative z-10 transition-all">
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="mb-10 group/back flex items-center gap-3 text-[#C4F20D]/80 hover:text-[#C4F20D] transition-all duration-300 font-bold tracking-[0.2em] uppercase text-xs sm:text-sm py-2 px-4 rounded-lg bg-white/5 border border-white/10 hover:border-[#C4F20D]/30"
         >
@@ -130,7 +130,9 @@ const GrowthOpportunities = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {opportunities.map((o, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{o.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {typeof o.icon === 'string' ? <img src={o.icon} alt={o.title} className="w-12 h-12 object-contain" /> : o.icon}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{o.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{o.desc}</p>
               </div>
@@ -141,7 +143,7 @@ const GrowthOpportunities = () => {
         <section className="mt-32 p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4F20D]/10 blur-[100px] -z-10 rounded-full" />
           <h2 className="text-3xl sm:text-5xl font-['Astro'] mb-12">Unlocking Potential</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">01</div>

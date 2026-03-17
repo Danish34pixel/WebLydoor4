@@ -20,22 +20,22 @@ const BlogUpdates = () => {
     {
       title: "Latest Tech",
       desc: "Stay informed about the latest frameworks, tools, and platforms that are shaping the future of the web.",
-      icon: "🚀"
+      icon: "/Market.png"
     },
     {
       title: "Market Shifts",
       desc: "Understand how changing consumer habits and economic trends are affecting the digital marketplace.",
-      icon: "📈"
+      icon: "/Shift.png"
     },
     {
       title: "Platform News",
       desc: "Get the latest updates on Google algorithm changes, social media platform updates, and privacy laws.",
-      icon: "📢"
+      icon: "/News.png"
     },
     {
       title: "Agency Life",
       desc: "A behind-the-scenes look at how Weblydoor operates and the lessons we learn daily in the trenches.",
-      icon: "🏢"
+      icon: "/techo.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const BlogUpdates = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

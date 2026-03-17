@@ -315,12 +315,11 @@ const MagneticButton = ({ sending }) => {
    FLOATING REVIEWS STRIP
 ══════════════════════════════════════════ */
 const REVIEWS = [
-  { name: 'Arjun Mehta', role: 'CEO, TechVenture', text: 'Weblydoor transformed our online presence completely. The website they built is stunning and ultra-fast.', stars: 5 },
-  { name: 'Priya Sharma', role: 'Founder, StyleHub', text: 'Incredible attention to detail. Our e-commerce conversions jumped 40% after the redesign. Highly recommend!', stars: 5 },
-  { name: 'Rahul Nair', role: 'Marketing Head, GrowthCo', text: 'The SEO work they did for us was exceptional. We went from page 4 to page 1 results in 2 months.', stars: 5 },
-  { name: 'Sneha Patel', role: 'Director, UrbanEats', text: 'Professional, creative, and always on time. Best digital agency we have worked with, period.', stars: 5 },
-  { name: 'Vikram Desai', role: 'CTO, CloudStack', text: 'The app they developed for us handles 10K+ daily users without a hiccup. Outstanding engineering.', stars: 5 },
-  { name: 'Meera Joshi', role: 'Brand Manager, LuxeWear', text: 'Our brand identity looks absolutely premium now. The logo and graphics work was beyond expectations.', stars: 5 },
+  { name: 'Hotel Tej', role: 'Website Design & Dev', text: 'Weblydoor built a stunning and user-friendly website for our hotel. Our direct bookings have increased significantly since the launch.', stars: 5 },
+  { name: 'Matra Shakti Sanghthan', role: 'NGO Website', text: 'They understood our mission perfectly and created a platform that beautifully showcases our cause and helps us connect with supporters.', stars: 5 },
+  { name: 'Famebliss', role: 'SEO Services', text: 'The SEO work they did for us was exceptional. We saw a massive improvement in our organic search rankings within just a few months.', stars: 5 },
+  { name: 'Ayesha Enterprises', role: 'Logo Design', text: 'Our brand identity looks absolutely premium now. The logo design perfectly captured the essence of our business.', stars: 5 },
+  { name: 'IES School', role: 'School Website', text: 'Weblydoor provided an excellent, easy-to-navigate website for our school. Parents and students find it extremely helpful and modern.', stars: 5 }
 ];
 
 const StarIcon = () => (

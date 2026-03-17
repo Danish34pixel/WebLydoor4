@@ -20,22 +20,22 @@ const Maintenance = () => {
     {
       title: "24/7 Monitoring",
       desc: "We keep a constant eye on your website to ensure it's always up and running perfectly for your customers.",
-      icon: "🕵️"
+      icon: "/Monitoring.png"
     },
     {
       title: "Security Patches",
       desc: "Regular updates to core files and plugins to keep hackers at bay and your data secure.",
-      icon: "🛡️"
+      icon: "/Security.png"
     },
     {
       title: "Performance Audits",
       desc: "Routine checks and optimizations to maintain lightning-fast speeds and high Lighthouse scores.",
-      icon: "⚡"
+      icon: "/AppOptim.png"
     },
     {
       title: "Content Updates",
       desc: "Need a quick change? We handle regular content and image updates so your site always stays fresh.",
-      icon: "🔄"
+      icon: "/Updated.png"
     }
   ];
 
@@ -81,7 +81,13 @@ const Maintenance = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

@@ -20,22 +20,22 @@ const DigitalMarketing = () => {
     {
       title: "Social Media Strategy",
       desc: "Building communities and engaging with your audience on the platforms where they spend the most time.",
-      icon: "📱"
+      icon: "/SocialStra.png"
     },
     {
       title: "PPC Advertising",
       desc: "Highly targeted ad campaigns that deliver immediate results and a measurable return on investment.",
-      icon: "🎯"
+      icon: "/PpcAd.png"
     },
     {
       title: "Content Marketing",
       desc: "Creating valuable, relevant content that attracts and retains a clearly defined audience.",
-      icon: "✍️"
+      icon: "/Content.png"
     },
     {
       title: "Email Campaigns",
       desc: "Automated and personalized email sequences that nurture leads and drive repeat business.",
-      icon: "✉️"
+      icon: "/EmailCamp.png"
     }
   ];
 
@@ -81,7 +81,13 @@ const DigitalMarketing = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

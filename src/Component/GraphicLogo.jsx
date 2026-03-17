@@ -20,22 +20,22 @@ const GraphicLogo = () => {
     {
       title: "Iconic Logos",
       desc: "We create timeless logos that capture your brand's essence and leave a lasting impression on your audience.",
-      icon: "🖌️"
+      icon: "/Graphic.png"
     },
     {
       title: "Visual Identity",
       desc: "Complete branding systems including typography, color palettes, and brand guidelines for absolute consistency.",
-      icon: "🎨"
+      icon: "/uiux.png"
     },
     {
       title: "Social Graphics",
       desc: "Engaging and shareable social media assets designed to boost your online presence and brand recognition.",
-      icon: "📸"
+      icon: "/Socialgrap.png"
     },
     {
       title: "Print & Digital",
       desc: "From business cards to digital banners, we ensure your brand looks premium across all mediums.",
-      icon: "📐"
+      icon: "/uiux.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const GraphicLogo = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

@@ -20,22 +20,22 @@ const Commitment = () => {
     {
       title: "Reliability",
       desc: "When we say we'll deliver, we mean it. Your project is held to the highest standards of punctuality and quality.",
-      icon: "🛡️"
+      icon: "/Relible.png"
     },
     {
       title: "Professionalism",
       desc: "Every interaction is handled with the utmost respect and professional courtesy. We value your time and expertise.",
-      icon: "👔"
+      icon: "/Profss.png"
     },
     {
       title: "Effectiveness",
       desc: "We don't just build; we solve. Our solutions are designed to be effective and deliver a real return on your investment.",
-      icon: "🔋"
+      icon: "/Effect.png"
     },
     {
       title: "Client Success",
       desc: "Your success is our ultimate metric. We aren't satisfied until you've achieved your digital goals.",
-      icon: "🏅"
+      icon: "/ClientSucc.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const Commitment = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

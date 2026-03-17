@@ -20,12 +20,12 @@ const AppDevelopment = () => {
     {
       title: "iOS & Android",
       desc: "We build native and cross-platform mobile applications that provide a seamless experience on all devices.",
-      icon: "📱"
+      icon: "/Appdevo.png"
     },
     {
       title: "UI/UX Design",
       desc: "Intuitive and engaging mobile interfaces designed to keep users coming back and provide maximum value.",
-      icon: "✨"
+      icon: "/uiux.png"
     },
     {
       title: "Cloud Integration",
@@ -35,7 +35,7 @@ const AppDevelopment = () => {
     {
       title: "App Store Optimization",
       desc: "We don't just build; we help you launch. Get your app seen and downloaded with our ASO strategies.",
-      icon: "🚀"
+      icon: "/AppOptim.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const AppDevelopment = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

@@ -20,22 +20,22 @@ const Mission = () => {
     {
       title: "Quality First",
       desc: "We don't cut corners. Every project we deliver meets the highest standards of code and design integrity.",
-      icon: "💎"
+      icon: "/QualityFirst.png"
     },
     {
       title: "Client-Centric",
       desc: "Your goals are our mission. We tailor our strategies to fit your specific business needs and timeline.",
-      icon: "🎯"
+      icon: "/Client-Centric.png"
     },
     {
       title: "Constant Growth",
       desc: "We are life-long learners. Our team is always mastering the latest tech to give you an unfair advantage.",
-      icon: "📈"
+      icon: "/ConGrowth.png"
     },
     {
       title: "Transparent Flow",
       desc: "No hidden agendas. We maintain clear, honest, and frequent communication throughout the entire project lifecycle.",
-      icon: "🛡️"
+      icon: "/TransparentFlow.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const Mission = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

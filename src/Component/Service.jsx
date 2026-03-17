@@ -97,59 +97,32 @@ const services = [
   {
     title: 'Website Development',
     description: 'We create modern, responsive, and user-friendly websites that represent your brand and help convert visitors into customers. Our websites are built to perform smoothly across all devices.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
+    icon: "/CustomWeb.png",
   },
   {
     title: 'App Development',
     description: 'Custom mobile applications for iOS and Android tailored to your business needs. We focus on performance, user experience, and scalable architecture.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    ),
+    icon: "/Appdevo.png",
   },
   {
     title: 'Digital Marketing',
     description: 'Our digital marketing solutions help businesses promote their products and services online. We focus on strategies that increase brand awareness and generate real results.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-      </svg>
-    ),
+    icon: "/DigigtalMar.png",
   },
   {
     title: 'Graphic and Logo',
     description: 'Professional visual identities that command attention. We design logos, brand assets, and digital graphics that elevate your professional standing.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-      </svg>
-    ),
+    icon: "/Graphic.png",
   },
   {
     title: 'SEO',
     description: 'Our SEO services help your website rank higher in search engines. We use effective strategies to improve visibility and increase organic traffic dramatically.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 13a3 3 0 100-6 3 3 0 000 6z" />
-      </svg>
-    ),
+    icon: "/Seo.png",
   },
   {
     title: 'Website Maintenance',
     description: 'Keeping a website updated and secure is important. Our maintenance services ensure your website runs smoothly, stays updated, and performs at its best.',
-    icon: (
-      <svg className="w-8 h-8 text-[#C4F20D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
+    icon: "/AppOptim.png",
   }
 ];
 
@@ -322,7 +295,11 @@ const ServiceCard = ({ service, index }) => {
               transform: isHovered ? 'scale(1.2) translateZ(5px)' : 'scale(1)',
               transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
             }}>
-              {service.icon}
+              {typeof service.icon === 'string' ? (
+                <img src={service.icon} alt={service.title} className="w-8 h-8 object-contain" />
+              ) : (
+                service.icon
+              )}
             </div>
           </div>
 

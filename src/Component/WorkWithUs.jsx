@@ -57,8 +57,8 @@ const WorkWithUs = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const tl = gsap.timeline();
-    tl.fromTo(contentRef.current, 
-      { opacity: 0, y: 20 }, 
+    tl.fromTo(contentRef.current,
+      { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.5 }
     );
   }, []);
@@ -67,30 +67,30 @@ const WorkWithUs = () => {
     {
       title: "Collaborative Culture",
       desc: "Our team thrives on collaboration. We believe that the best ideas come from diverse perspectives working together.",
-      icon: "🤝"
+      icon: "/Partenrship.png"
     },
     {
       title: "Innovation First",
       desc: "We encourage our team members to push boundaries and bring new, innovative ideas to every project.",
-      icon: "💡"
+      icon: "/Idea.png"
     },
     {
       title: "Flexible Environment",
       desc: "We value work-life balance and provide a flexible environment that empowers you to do your best work.",
-      icon: "🏡"
+      icon: "/env.png"
     },
     {
       title: "Impactful Projects",
       desc: "Work on projects that matter. We build digital products that have a real impact on our clients and their customers.",
-      icon: "🚀"
+      icon: "/Impact.png"
     }
   ];
 
   return (
     <div ref={containerRef} className="w-full min-h-screen bg-transparent text-white selection:bg-[#C4F20D] selection:text-black">
-      
+
       <main ref={contentRef} className="max-w-7xl mx-auto px-4 sm:px-8 xl:px-12 pt-10 pb-20 relative z-10 transition-all">
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="mb-10 group/back flex items-center gap-3 text-[#C4F20D]/80 hover:text-[#C4F20D] transition-all duration-300 font-bold tracking-[0.2em] uppercase text-xs sm:text-sm py-2 px-4 rounded-lg bg-white/5 border border-white/10 hover:border-[#C4F20D]/30"
         >
@@ -130,7 +130,9 @@ const WorkWithUs = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {highlights.map((h, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{h.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {typeof h.icon === 'string' ? <img src={h.icon} alt={h.title} className="w-12 h-12 object-contain" /> : h.icon}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{h.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{h.desc}</p>
               </div>
@@ -141,7 +143,7 @@ const WorkWithUs = () => {
         <section className="mt-32 p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4F20D]/10 blur-[100px] -z-10 rounded-full" />
           <h2 className="text-3xl sm:text-5xl font-['Astro'] mb-12">Our Digital Life</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">01</div>

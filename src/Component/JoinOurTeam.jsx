@@ -57,8 +57,8 @@ const JoinOurTeam = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const tl = gsap.timeline();
-    tl.fromTo(contentRef.current, 
-      { opacity: 0, y: 20 }, 
+    tl.fromTo(contentRef.current,
+      { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.5 }
     );
   }, []);
@@ -67,30 +67,30 @@ const JoinOurTeam = () => {
     {
       title: "Explore Openings",
       desc: "Check our current openings to see if there's a match for your skills and passion.",
-      icon: "🔍"
+      icon: "/Explore.png"
     },
     {
       title: "Submit Application",
       desc: "Send us your resume and a cover letter that tells us why you're a perfect fit for Weblydoor.",
-      icon: "✉️"
+      icon: "/Submit.png"
     },
     {
       title: "Culture Interview",
       desc: "We values personality as much as skill. Let's talk about your goals and how you see yourself growing with us.",
-      icon: "🗣️"
+      icon: "/Cuult.png"
     },
     {
       title: "Technical Review",
       desc: "A hands-on review of your technical skills and how you approach complex digital problems.",
-      icon: "💻"
+      icon: "/Technical.png"
     }
   ];
 
   return (
     <div ref={containerRef} className="w-full min-h-screen bg-transparent text-white selection:bg-[#C4F20D] selection:text-black">
-      
+
       <main ref={contentRef} className="max-w-7xl mx-auto px-4 sm:px-8 xl:px-12 pt-10 pb-20 relative z-10 transition-all">
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="mb-10 group/back flex items-center gap-3 text-[#C4F20D]/80 hover:text-[#C4F20D] transition-all duration-300 font-bold tracking-[0.2em] uppercase text-xs sm:text-sm py-2 px-4 rounded-lg bg-white/5 border border-white/10 hover:border-[#C4F20D]/30"
         >
@@ -130,7 +130,9 @@ const JoinOurTeam = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {steps.map((s, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{s.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {typeof s.icon === 'string' ? <img src={s.icon} alt={s.title} className="w-12 h-12 object-contain" /> : s.icon}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{s.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
               </div>
@@ -141,7 +143,7 @@ const JoinOurTeam = () => {
         <section className="mt-32 p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/5 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4F20D]/10 blur-[100px] -z-10 rounded-full" />
           <h2 className="text-3xl sm:text-5xl font-['Astro'] mb-12">Applying to Weblydoor</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <div className="text-6xl font-extrabold text-[#C4F20D]/20 mb-4 font-['Astro']">01</div>
@@ -168,16 +170,16 @@ const JoinOurTeam = () => {
         </section>
 
         <div className="mt-20 text-center">
-            <a 
-              href="mailto:danishkhannn34@gmail.com"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#C4F20D] text-black font-extrabold font-['Astro'] tracking-widest rounded-full hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(196,242,13,0.3)] hover:shadow-[0_0_50px_rgba(196,242,13,0.5)]"
-            >
-              SEND RESUME
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-          </div>
+          <a
+            href="mailto:danishkhannn34@gmail.com"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-[#C4F20D] text-black font-extrabold font-['Astro'] tracking-widest rounded-full hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(196,242,13,0.3)] hover:shadow-[0_0_50px_rgba(196,242,13,0.5)]"
+          >
+            SEND RESUME
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
       </main>
     </div>
   );

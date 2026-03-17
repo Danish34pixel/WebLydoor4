@@ -20,22 +20,22 @@ const BlogGrowth = () => {
     {
       title: "Lead Generation",
       desc: "Advanced techniques for turning your website into a 24/7 lead-generating machine.",
-      icon: "🎯"
+      icon: "/Relible.png"
     },
     {
       title: "Conversion Tips",
       desc: "Minor tweaks with major results. Learn how to optimize your UX/UI for maximum sales.",
-      icon: "💸"
+      icon: "/Optamize.png"
     },
     {
       title: "Business Scaling",
       desc: "Strategies for taking your business from local to global, and from thousands to millions.",
-      icon: "📈"
+      icon: "/ConGrowth.png"
     },
     {
       title: "ROI Tracking",
       desc: "Learn how to measure what matters. Don't waste money on marketing that doesn't deliver results.",
-      icon: "📊"
+      icon: "/Analytics.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const BlogGrowth = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

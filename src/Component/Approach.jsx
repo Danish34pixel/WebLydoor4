@@ -20,22 +20,22 @@ const Approach = () => {
     {
       title: "Discovery",
       desc: "We start by diving deep into your business, goals, and challenges to understand the 'why' before the 'how'.",
-      icon: "🔍"
+      icon: "/Discovery.png"
     },
     {
       title: "Strategy",
       desc: "Creating a roadmap for success. We plan every step to ensure your project is delivered on time and above expectations.",
-      icon: "🗺️"
+      icon: "/Stratergy.png"
     },
     {
       title: "Execution",
       desc: "Where the magic happens. Our experts build your solution using the latest tech and best design practices.",
-      icon: "⚡"
+      icon: "/Excecution.png"
     },
     {
       title: "Optimization",
       desc: "We don't just launch and leave. We monitor, refine, and optimize to ensure long-term growth and high performance.",
-      icon: "🛠️"
+      icon: "/Optamize.png"
     }
   ];
 
@@ -69,7 +69,13 @@ const Approach = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((f, i) => (
               <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-[#C4F20D]/50 transition-colors duration-500 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">{f.icon}</div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {f.icon.startsWith('/') ? (
+                    <img src={f.icon} alt={f.title} className="w-12 h-12 object-contain" />
+                  ) : (
+                    f.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-[#C4F20D] mb-3">{f.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>

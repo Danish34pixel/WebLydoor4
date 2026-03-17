@@ -88,12 +88,12 @@ const AnimatedStat = ({ value, label, delay = 0 }) => {
   }, [visible, value, delay]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center group">
-      <span className="text-3xl sm:text-4xl font-extrabold text-[#C4F20D] font-['Astro'] tabular-nums"
-        style={{ textShadow: '0 0 20px rgba(196,242,13,0.6)' }}>
-        {count}+
+    <div ref={ref} className="flex flex-col items-center group cursor-pointer">
+      
+      <span className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase mt-1 px-4 py-1.5 rounded-full border border-[#C4F20D]/30 bg-[#C4F20D]/10 text-[#C4F20D] shadow-[0_0_15px_rgba(196,242,13,0.15)] group-hover:bg-[#C4F20D]/20 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(196,242,13,0.3)] transition-all duration-300 relative overflow-hidden">
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C4F20D]/20 to-transparent translate-x-[-100%] group-hover:animate-[border-flow_1.5s_linear_infinite]" />
+        {label}
       </span>
-      <span className="text-xs text-gray-400 tracking-widest uppercase mt-1">{label}</span>
     </div>
   );
 };
@@ -325,7 +325,11 @@ const AboutCard = ({ item, index }) => {
                 transform: isHovered ? 'scale(1.2) translateZ(5px)' : 'scale(1)',
                 transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
               }}>
-                {item.icon}
+                {typeof item.icon === 'string' ? (
+                  <img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" />
+                ) : (
+                  item.icon
+                )}
               </div>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-[#C4F20D] font-['Astro'] tracking-wider leading-tight"
